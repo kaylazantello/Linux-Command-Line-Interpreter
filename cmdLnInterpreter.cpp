@@ -13,7 +13,7 @@ df
 free
 date
 cat
-cd
+cd .khvn aesFkj;bgt
 Execute multiple commands by entering a ; between commands
 ************************************************************/
 #include <iostream>
