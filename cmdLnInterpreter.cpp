@@ -14,7 +14,7 @@ free
 date
 cat
 cd .khvn aesFkj;bgt
-Execute multiple commands by entering a ; between commands
+Execute multiple commandds by entering a ; between commands
 ************************************************************/
 #include <iostream>
 #include <string>
