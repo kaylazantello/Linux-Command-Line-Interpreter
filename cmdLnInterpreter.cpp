@@ -22,7 +22,7 @@ cd
 5.Move files across directories 
 6.Duplicate files -ETHAN
 7.Duplicate directories - ETHAN
-8.Search for a file in a directory tree
+8.Search for a file in a directory tree - DONE
 9.Display a directory tree given a starting node - DONE
 10.Get basic information about a file - DONE
 11.Get detailed information about a file (e.g. using a special flag) -DONE
@@ -280,6 +280,16 @@ int main() {
             if(commands[i][0] == "stat") {
                 string statCommand = commands[i][0] + " " + commands[i][1];
                 system(statCommand.c_str());
+                continue;
+            }
+            
+            // search for a file in a directory tree
+            if(commands[i][0] == "find") {
+                for(int j = 0; j < commands[i].size() - 1; j++) {  // append the additional input to command string
+                    commands[i][0] = commands[i][0] + " " + commands[i][j+1];
+                }
+                
+                system(commands[i][0].c_str());
                 continue;
             }
 
