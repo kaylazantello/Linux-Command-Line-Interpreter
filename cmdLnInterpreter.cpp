@@ -57,7 +57,7 @@ int main() {
     while(1) {
         
         // display user input prompt
-        cout << "\n> ";
+        cout << "\n" << pwd() << "> ";
 
         commands.clear();  // clear command vector for new input
         temp.clear();  // clear temp vector for new input
