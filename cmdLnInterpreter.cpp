@@ -13,7 +13,22 @@ df
 free
 date
 cat
-cd .khvn aesFkj;bgt
+cd 
+
+1.Create and rename directories - DONE
+2.Delete directories, with special handling of non-empty directories (e.g. special flag to delete command) -DONE
+3.Create, rename, edit, and delete files -ALMOST DONE
+4.When a file is created, a special flag will indicate the amount of data (bytes) to (randomly) generate for it (in order to eliminate the need to open and edit each file)
+5.Move files across directories 
+6.Duplicate files -ETHAN
+7.Duplicate directories - ETHAN
+8.Search for a file in a directory tree
+9.Display a directory tree given a starting node
+10.Get basic information about a file
+11.Get detailed information about a file (e.g. using a special flag)
+12.Get basic information about a directory
+13.Get detailed information about a directory (e.g. using a flag)
+
 Execute multiple commandds by entering a ; between commands
 ************************************************************/
 #include <iostream>
@@ -42,7 +57,7 @@ int main() {
     while(1) {
         
         // display user input prompt
-        cout << "\n> ";
+        cout << "\n" << pwd() << "> ";
 
         commands.clear();  // clear command vector for new input
         temp.clear();  // clear temp vector for new input
@@ -106,6 +121,9 @@ int main() {
 
             // display list of the current directory's contents
             if(commands[i][0] == "ls") {
+                for(int j = 0; j < commands[i].size() - 1; j++) {  // append any flags to the command string
+                    commands[i][0] = commands[i][0] + " " + commands[i][j+1];
+                }
                 system(commands[i][0].c_str());  // convert command from string to char array, then use system() to execute command
                 continue;
             }
