@@ -37,6 +37,7 @@ Execute multiple commandds by entering a ; between commands
 #include <experimental/filesystem>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -49,6 +50,9 @@ string pwd() {
 
 int main() {
 
+    //cout << "\033[1;34mThis is bold red text\033[0m\n";
+    //system("whoami");
+
     string input;
     vector<vector<string>> commands{};
     vector<string> temp{};
@@ -57,7 +61,10 @@ int main() {
     while(1) {
         
         // display user input prompt
-        cout << "\n" << pwd() << "> ";
+        cout << "\n\033[1;32m" << getenv("USER") << "\033[0m:\033[1;34m" << pwd() << "\033[1;37m> \033[0m";  // bold green/blue username and path name prompt
+        //cout << "\n> ";  // simple prompt
+        //cout << "\n" << pwd() << "> ";  // path name prompt
+        //cout << "\n\033[1;34m" << pwd() << "\033[0m> ";  // bold blue path name prompt
 
         commands.clear();  // clear command vector for new input
         temp.clear();  // clear temp vector for new input
