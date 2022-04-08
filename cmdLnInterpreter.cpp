@@ -106,6 +106,9 @@ int main() {
 
             // display list of the current directory's contents
             if(commands[i][0] == "ls") {
+                for(int j = 0; j < commands[i].size() - 1; j++) {  // append any flags to the command string
+                    commands[i][0] = commands[i][0] + " " + commands[i][j+1];
+                }
                 system(commands[i][0].c_str());  // convert command from string to char array, then use system() to execute command
                 continue;
             }
