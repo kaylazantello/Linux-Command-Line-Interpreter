@@ -110,6 +110,12 @@ int main() {
                 continue;
             }
 
+            if(commands[i][0] == "rm") {
+                string p1 = commands[i][0] + " " + commands[i][1];
+                system(p1.c_str());
+                continue;
+            }
+
             // print the current date
             if(commands[i][0] == "date") {
                 system(commands[i][0].c_str());
