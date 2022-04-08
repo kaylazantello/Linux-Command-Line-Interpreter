@@ -198,7 +198,6 @@ int main() {
                 continue;
             }
 
-
             // print the current date
             if(commands[i][0] == "date") {
                 system(commands[i][0].c_str());
@@ -267,9 +266,7 @@ int main() {
 
             // rename a file or directory
             if(commands[i][0] == "mv") {
-                string arg1 = commands[i][1];  // old name
-                string arg2 = commands[i][2];  // new name
-                fs::rename(arg1, arg2);
+                fs::rename(commands[i][1], commands[i][2]);  // arg 1 is old name, arg 2 is new name
                 continue;
             }
 
