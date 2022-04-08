@@ -112,9 +112,15 @@ int main() {
 
             if(commands[i][0] == "rm") {
                 string p1 = commands[i][0];
-                for(int j=1;j<commands[i].size();j++) {
-                    string p2 = " " + commands[i][j];
+                if(commands[i][1] == "-r") {
+                    string p2 = " " + string("-r") + " " + commands[i][2];
                     p1.append(p2);
+                }
+                else{
+                    for(int j=1;j<commands[i].size();j++) {
+                        string p2 = " " + commands[i][j];
+                        p1.append(p2);
+                    }
                 }
 
                 system(p1.c_str());
