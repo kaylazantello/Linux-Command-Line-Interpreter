@@ -1,6 +1,6 @@
 /*********************************************************
 Project 1: Improved UNIX/Linux Command Line Interpreter
-Ethan Macalaguim and Kayla Zantello
+Ethan Macalaguim and Kayla Zantello and Kara Burkholder
 CST-315: Operating Systems
 February 20, 2022
 Commands implemented:
