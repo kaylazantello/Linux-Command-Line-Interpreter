@@ -110,6 +110,7 @@ int main() {
                 continue;
             }
 
+            // removes a single file, multiple files, or a non-empty directory with -r
             if(commands[i][0] == "rm") {
                 string p1 = commands[i][0];
                 if(commands[i][1] == "-r") {
@@ -126,6 +127,11 @@ int main() {
                 system(p1.c_str());
                 continue;
             }
+
+            if(commands[i][0] == "cp") {
+
+            }
+
 
             // print the current date
             if(commands[i][0] == "date") {
