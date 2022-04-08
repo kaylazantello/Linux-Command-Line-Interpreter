@@ -64,6 +64,10 @@ int main() {
 
         getline(cin, input);  // get entire input entered by user (including spaces) and store in string variable called input
         size_t pos = 0;
+
+        if(input.length() == 0) {
+            continue;
+        }
         
         // while a semicolon is present in string
         while((pos = input.find_first_of(';')) != string::npos) {
@@ -94,17 +98,17 @@ int main() {
             cmd.push_back(temp[i]);  // insert remaining string at temp[i] into cmd
             commands.push_back(cmd);  // insert cmd into commands
         }
-
+        /*
         // print commands vector & other details (for debugging purposes)
-        /*cout << "size of commands vector: " << commands.size() << endl;
+        cout << "size of commands vector: " << commands.size() << endl;
         for(int i = 0; i < commands.size(); i++) {
             cout << "commands[" << i << "] (" << commands[i].size() << ") = ";
             for(int j = 0; j < commands[i].size(); j++) {
                 cout << "|" << commands[i][j] << "|" << " (" << commands[i][j].size() << ")" << " ";
             }
             cout << endl;
-        }*/
-        
+        }
+        */
         // for each cmd vector in commands
         for(int i = 0; i < commands.size(); i++) {
 
@@ -217,11 +221,28 @@ int main() {
                 continue;
             }
 
-            // rename a file or directory https://en.cppreference.com/w/cpp/filesystem/rename
+            // rename a file or directory
             if(commands[i][0] == "mv") {
                 string arg1 = commands[i][1];  // old name
                 string arg2 = commands[i][2];  // new name
                 fs::rename(arg1, arg2);
+                continue;
+            }
+
+            // display directory tree
+            if(commands[i][0] == "tree") {
+                system(commands[i][0].c_str());
+                continue;
+            }
+
+            // get detailed information about a file or directory
+            if(commands[i][0] == "stat") {
+                string statCommand = commands[i][0] + " " + commands[i][1];
+                system(statCommand.c_str());
+                continue;
+            }
+
+            if(commands[i].size() == 0) {
                 continue;
             }
             
