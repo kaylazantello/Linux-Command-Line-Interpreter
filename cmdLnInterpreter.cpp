@@ -128,8 +128,52 @@ int main() {
                 continue;
             }
 
+            // copying files and directories and whatnot
             if(commands[i][0] == "cp") {
+                string p1 = commands[i][0];
+                if(fs::is_directory(commands[i][1])) {
+                    printf("it is a directory");
+                }
+                else {
+                    //printf("it is not a directory");
+                    if(fs::is_directory(commands[i][2])) {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2];
+                        p1.append(p2);
+                    }
+                    else if(commands[i].size() < 4) {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2];
+                        p1.append(p2);
+                    }
+                    else if(commands[i][1] == "-i") {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
+                        p1.append(p2);
+                    }
+                    else if(commands[i][1] == "-p") {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
+                        p1.append(p2);
+                    }
+                    else if(commands[i][1] == "-v") {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
+                        p1.append(p2);
+                    }
+                    
+                    else if(commands[i].size() > 3) {
+                        for(int j=1;j<commands[i].size();j++) {
+                            if(fs::is_directory(commands[i][j])) {
+                                string p2 = " " + commands[i][j];
+                                p1.append(p2);
+                                break;
+                            }
+                            else {
+                                string p2 = " " + commands[i][j];
+                                p1.append(p2);
+                            }
+                        }
+                    }                   
 
+                }
+                system(p1.c_str());
+                continue;
             }
 
 
@@ -204,6 +248,10 @@ int main() {
                 string arg1 = commands[i][1];  // old name
                 string arg2 = commands[i][2];  // new name
                 fs::rename(arg1, arg2);
+                continue;
+            }
+
+            if(commands[i][0] == " " || "") {
                 continue;
             }
             
