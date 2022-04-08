@@ -110,6 +110,17 @@ int main() {
                 continue;
             }
 
+            if(commands[i][0] == "rm") {
+                string p1 = commands[i][0];
+                for(int j=1;j<commands[i].size();j++) {
+                    string p2 = " " + commands[i][j];
+                    p1.append(p2);
+                }
+
+                system(p1.c_str());
+                continue;
+            }
+
             // print the current date
             if(commands[i][0] == "date") {
                 system(commands[i][0].c_str());
@@ -170,8 +181,17 @@ int main() {
                 continue;
             }
 
+            // run short term process scheduler
             if(commands[i][0] == "./scheduler") {
                 system(commands[i][0].c_str());
+                continue;
+            }
+
+            // rename a file or directory https://en.cppreference.com/w/cpp/filesystem/rename
+            if(commands[i][0] == "mv") {
+                string arg1 = commands[i][1];  // old name
+                string arg2 = commands[i][2];  // new name
+                fs::rename(arg1, arg2);
                 continue;
             }
             
