@@ -23,11 +23,11 @@ cd
 6.Duplicate files -ETHAN
 7.Duplicate directories - ETHAN
 8.Search for a file in a directory tree
-9.Display a directory tree given a starting node
-10.Get basic information about a file
-11.Get detailed information about a file (e.g. using a special flag)
-12.Get basic information about a directory
-13.Get detailed information about a directory (e.g. using a flag)
+9.Display a directory tree given a starting node - DONE
+10.Get basic information about a file - DONE
+11.Get detailed information about a file (e.g. using a special flag) -DONE
+12.Get basic information about a directory - DONE
+13.Get detailed information about a directory (e.g. using a flag) - DONE
 
 Execute multiple commandds by entering a ; between commands
 ************************************************************/
