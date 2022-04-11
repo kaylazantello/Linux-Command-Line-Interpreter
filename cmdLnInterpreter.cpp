@@ -38,12 +38,10 @@ Execute multiple commandds by entering a ; between commands
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdlib.h>
-//#include <filesystem>
 #include <fstream>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
-//namespace nfs = std::filesystem;
 
 // returns path of current directory as a string
 string pwd() {
@@ -309,6 +307,8 @@ int main() {
             //if(commands[i][0] == " " || "") {
                 //continue;
             //}
+
+         
             
         }
     
