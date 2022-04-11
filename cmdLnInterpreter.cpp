@@ -158,35 +158,62 @@ int main() {
                 continue;
             }
 
-            // copying files and directories and whatnot
+            // copying files and directories with or without the use of special flags
             if(commands[i][0] == "cp") {
                 string p1 = commands[i][0];
+
+                // Copying of directories specifically (base case)
                 if(fs::is_directory(commands[i][1])) {
-                    printf("it is a directory");
+                    string p2 = " " + commands[i][1] + " " + commands [i][2];
+                    p1.append(p2);
                 }
                 else {
+                    // copying everything else (and a directory special case)
                     //printf("it is not a directory");
+
+                    // copying a file to a new directory
                     if(fs::is_directory(commands[i][2])) {
                         string p2 = " " + commands[i][1] + " " + commands[i][2];
                         p1.append(p2);
                     }
+                    // determining whether or not the command has a flag
                     else if(commands[i].size() < 4) {
                         string p2 = " " + commands[i][1] + " " + commands[i][2];
                         p1.append(p2);
                     }
+
+                    // copying based on special flags
+                    // confirms that you are ok overwriting a file
                     else if(commands[i][1] == "-i") {
                         string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
                         p1.append(p2);
                     }
+
+                    // preserves original privilleges and owner of copied file
                     else if(commands[i][1] == "-p") {
                         string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
                         p1.append(p2);
                     }
+
+                    // Shows exactly what file is being copied and where it is being copied to
                     else if(commands[i][1] == "-v") {
                         string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
                         p1.append(p2);
                     }
+
+                    // forcing files to be copied regardless of permissions
+                    else if(commands[i][1] == "-f") {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
+                        p1.append(p2);                        
+                    }
+
+                    // forcing directories to copied over recursively
+                    else if(commands[i][1] == "-r") {
+                        string p2 = " " + commands[i][1] + " " + commands[i][2] + " " + commands[i][3];
+                        p1.append(p2);
+                    }
                     
+                    // takes into account copying more than one file at a time
                     else if(commands[i].size() > 3) {
                         for(int j=1;j<commands[i].size();j++) {
                             if(fs::is_directory(commands[i][j])) {
@@ -245,7 +272,7 @@ int main() {
                 if(commands[i][1] == ">") {
                     string newCommand = commands[i][0] + " > " + commands[i][2];
                     system(newCommand.c_str());
-                    // PLACE CODE ON RANDOMLY GENERATING FILE BYTE SIZE HERE
+                    // Randomly generating file size from 5-105 kB
                     fs::resize_file(commands[i][2], (rand()%100)+5);
                     continue;
                 }
@@ -254,6 +281,13 @@ int main() {
                     system(newCommand2.c_str());
                     continue;
                 }
+            }
+
+            // editing a file
+            if(commands[i][0] == "vi") {
+                string newCommand = commands[i][0] + " " + commands[i][2];
+                system(newCommand.c_str());
+                continue;
             }
 
             // display storage usage
