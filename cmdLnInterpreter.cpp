@@ -187,6 +187,7 @@ int main() {
                 if(commands[i][1] == ">") {
                     string newCommand = commands[i][0] + " > " + commands[i][2];
                     system(newCommand.c_str());
+                    // PLACE CODE ON RANDOMLY GENERATING FILE BYTE SIZE HERE
                     continue;
                 }
                 else {
