@@ -59,7 +59,7 @@ the 'vi' command can be used to edit the contents of a single file.
 
 Then, you need to press i, type whatever edit you want to make.
 To save the edits, press ESC key. Type :wq! filename
-Thus you will have successfuly edited a file.
+
 
 ### cp flags
 -i: confirms that you are ok overwriting a file  
