@@ -310,11 +310,14 @@ int main() {
                 system(commands[i][0].c_str());
                 continue;
             }
-
+            
             // rename a file or directory
             if(commands[i][0] == "mv") {
-                fs::rename(commands[i][1], commands[i][2]);  // arg 1 is old name, arg 2 is new name
-                continue;
+                for(int j = 0; j < commands[i].size() - 1; j++) {  // for each string in commands[i]
+                    commands[i][0] = commands[i][0] + " " + commands[i][j+1];
+                }
+                system(commands[i][0].c_str());  // convert command from string to char array, then use system() to execute command
+                continue;    
             }
 
             // display directory tree
