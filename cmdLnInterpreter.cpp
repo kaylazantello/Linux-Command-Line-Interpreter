@@ -18,7 +18,7 @@ cd
 1.Create and rename directories - DONE
 2.Delete directories, with special handling of non-empty directories (e.g. special flag to delete command) -DONE
 3.Create, rename, edit, and delete files -ALMOST DONE
-4.When a file is created, a special flag will indicate the amount of data (bytes) to (randomly) generate for it (in order to eliminate the need to open and edit each file)
+4.When a file is created, a special flag will indicate the amount of data (bytes) to (randomly) generate for it (in order to eliminate the need to open and edit each file) -DONE
 5.Move files across directories 
 6.Duplicate files -ETHAN
 7.Duplicate directories - ETHAN
@@ -38,9 +38,12 @@ Execute multiple commandds by entering a ; between commands
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+//#include <filesystem>
+#include <fstream>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
+//namespace nfs = std::filesystem;
 
 // returns path of current directory as a string
 string pwd() {
@@ -245,6 +248,7 @@ int main() {
                     string newCommand = commands[i][0] + " > " + commands[i][2];
                     system(newCommand.c_str());
                     // PLACE CODE ON RANDOMLY GENERATING FILE BYTE SIZE HERE
+                    fs::resize_file(commands[i][2], (rand()%100)+5);
                     continue;
                 }
                 else {
