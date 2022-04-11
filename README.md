@@ -52,9 +52,9 @@ created with the cat command
 
 ### vi
 the 'vi' command can be used to edit the contents of a single file.
-'''
+```
 > vi myFile.txt
-'''
+```
 *This will open up an editor to insert text into myFile.txt*.
 
 Then, you need to press i, type whatever edit you want to make.
