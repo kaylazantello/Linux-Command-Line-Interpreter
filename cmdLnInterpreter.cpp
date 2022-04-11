@@ -51,9 +51,6 @@ string pwd() {
 
 int main() {
 
-    //cout << "\033[1;34mThis is bold red text\033[0m\n";
-    //system("whoami");
-
     string input;
     vector<vector<string>> commands{};
     vector<string> temp{};
@@ -73,6 +70,7 @@ int main() {
         getline(cin, input);  // get entire input entered by user (including spaces) and store in string variable called input
         size_t pos = 0;
 
+        // continue if no string was entered
         if(input.length() == 0) {
             continue;
         }
@@ -119,6 +117,11 @@ int main() {
         */
         // for each cmd vector in commands
         for(int i = 0; i < commands.size(); i++) {
+
+            // continue if command vector is empty
+            if(commands[i].size() == 0) {
+                continue;
+            }
 
             // exit command line interpreter program
             if(commands[i][0] == "quit") {
@@ -307,11 +310,14 @@ int main() {
                 system(commands[i][0].c_str());
                 continue;
             }
-
+            
             // rename a file or directory
             if(commands[i][0] == "mv") {
-                fs::rename(commands[i][1], commands[i][2]);  // arg 1 is old name, arg 2 is new name
-                continue;
+                for(int j = 0; j < commands[i].size() - 1; j++) {  // for each string in commands[i]
+                    commands[i][0] = commands[i][0] + " " + commands[i][j+1];
+                }
+                system(commands[i][0].c_str());  // convert command from string to char array, then use system() to execute command
+                continue;    
             }
 
             // display directory tree
