@@ -18,6 +18,13 @@
 8. date: print current date
 9. cat: create a new file and write to it or print a single file
 10. cd: change current working directory
+11. rm: removes a single file, multiple files, or a non-empty directory with -r
+12. cp: copy files and directories with or without the use of special flags, flags include -i, -v, -p, -f, -r
+13. vi: edits an exisiting file
+14. mv: rename file or directory
+15. tree: displays directory tree from current locations
+16. stat: get detailed information about a file or directory
+17. find: search for a file in a directory tree
 
 ## Additional Notes on Inputting Commands
 ### Running multiple commands
@@ -41,3 +48,10 @@ created with the cat command
 ^D
 ```
 *This will create a file called 'newFile.txt' which will contain the two lines under the command*.
+
+### cp flags
+-i: confirms that you are ok overwriting a file
+-v: shows exactly what file is being copied and where it is being copied to
+-p: preserves original privilleges and owner of copied file
+-f: forcing files to be copied regardless of permissions
+-r: forcing directories to copied over recursively
