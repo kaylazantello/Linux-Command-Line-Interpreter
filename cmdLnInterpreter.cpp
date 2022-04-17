@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*********************************************************
 Project 1: Improved UNIX/Linux Command Line Interpreter
 Ethan Macalaguim and Kayla Zantello and Kara Burkholder
@@ -39,12 +38,10 @@ Execute multiple commandds by entering a ; between commands
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdlib.h>
-//#include <filesystem>
 #include <fstream>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
-//namespace nfs = std::filesystem;
 
 // returns path of current directory as a string
 string pwd() {
@@ -179,7 +176,6 @@ int main() {
                         string p2 = " " + commands[i][1] + " " + commands[i][2];
                         p1.append(p2);
                     }
-
                     // determining whether or not the command has a flag
                     else if(commands[i].size() < 4) {
                         string p2 = " " + commands[i][1] + " " + commands[i][2];
@@ -276,7 +272,7 @@ int main() {
                 if(commands[i][1] == ">") {
                     string newCommand = commands[i][0] + " > " + commands[i][2];
                     system(newCommand.c_str());
-                    // PLACE CODE ON RANDOMLY GENERATING FILE BYTE SIZE HERE
+                    // Randomly generating file size from 5-105 kB
                     fs::resize_file(commands[i][2], (rand()%100)+5);
                     continue;
                 }
@@ -345,6 +341,8 @@ int main() {
             //if(commands[i][0] == " " || "") {
                 //continue;
             //}
+
+         
             
         }
     
