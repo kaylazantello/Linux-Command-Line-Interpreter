@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*********************************************************
 Project 1: Improved UNIX/Linux Command Line Interpreter
 Ethan Macalaguim and Kayla Zantello and Kara Burkholder
