@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
 #include <experimental/filesystem>
 #include <unistd.h>
@@ -11,11 +12,11 @@
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
-int copyFiles(int argn, char argv[]) {
+int copyFiles(int argn, char* argv[]) {
 
     int src_fd, dst_fd, n, err;
     unsigned char buffer[4096];
-    char src_path, dst_path;
+    char * src_path, dst_path;
 
     // Assume that the program takes two arguments the source path followed
     // by the destination path.
@@ -26,10 +27,10 @@ int copyFiles(int argn, char argv[]) {
     }
 
     src_path = argv[1];
-    dst_path = argv[2];
+    //dst_path = argv[2];
 
     src_fd = open(src_path, O_RDONLY);
-    dst_fd = open(dst_path, O_CREAT | O_WRONLY);
+    dst_fd = open(argv[2], O_CREAT | O_WRONLY);
 
     while (1) {
         err = read(src_fd, buffer, 4096);
@@ -65,7 +66,7 @@ int main() {
     vector<vector<string>> commands{};
     vector<string> temp{};
     vector<string> cmd{};
-while(1) {
+    while(1) {
          
         // display user input prompt
         cout << "\n\033[1;32m" << getenv("USER") << "\033[0m:\033[1;34m" << pwd() << "\033[1;37m> \033[0m";  // bold green/blue username and path name prompt
@@ -137,12 +138,12 @@ while(1) {
                 strcpy(c, path.c_str());
                 char c1[newPath.size() + 1];
                 strcpy(c, newPath.c_str());
-                char* arr[2] = {c, c1};
+                char * arr[2] = {c, c1};
                 copyFiles(2, arr);
 
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
             }
-}
-}
+        }
+    }
 }
