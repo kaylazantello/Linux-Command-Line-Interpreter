@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <string.h>
 #include <exception>
-//#include <filesystem>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -67,8 +66,8 @@ int copyFiles(int argn, string argv[]) {
 
     try
     {
-        fs:: create_directories(targetParent); // Recursively create the target directory path if it does not exist.
-        fs:: copy_file(sourceFile, target, fs ::copy_options::overwrite_existing);
+        //fs:: create_directories(targetParent); // Recursively create the target directory path if it does not exist.
+        fs:: copy(sourceFile, target, fs ::copy_options::overwrite_existing);
     }
     catch (std::exception& e) //If any filesystem error
     {
