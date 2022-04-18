@@ -7,17 +7,19 @@
 #include <stdlib.h>
 #include <fstream>
 #include <fcntl.h>
+#include <string.h>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
-int copyFiles(int argn, char argv[]) {
+int copyFiles(int argn, string argv[]) {
 
-    std::fstream fstr;
+    //std::fstream fstr;
 
     int src_fd, dst_fd, n, err;
     unsigned char buffer[4096];
-    char src_path, dst_path;
+    const char * src_path;
+    const char * dst_path;
 
     // Assume that the program takes two arguments the source path followed
     // by the destination path.
@@ -27,11 +29,14 @@ int copyFiles(int argn, char argv[]) {
         exit(1);
     }
 
-    src_path = argv[1];
-    dst_path = argv[2];
+    src_path = argv[1].c_str();
+    dst_path = argv[2].c_str();
 
-    src_fd = fstr.open(src_path, O_RONLY);
-    dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
+    //src_fd = fstr.open(src_path, O_RONLY);
+    //dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
+
+    src_fd = open(src_path, O_RDONLY);
+    dst_fd = open(dst_path, O_CREAT | O_WRONLY);
 
     while (1) {
         err = read(src_fd, buffer, 4096);
@@ -135,13 +140,8 @@ while(1) {
                 string path = pwd(); //get current working directory
                 mkdir("sysFiles", 0777);
                 string newPath = path + "/sysFiles"; //create new directory to copy files into
-                char c[path.size() + 1];
-                strcpy(c, path.c_str());
-                char c1[newPath.size() + 1];
-                strcpy(c, newPath.c_str());
-                char* arr[2] = {c, c1};
+                string arr[2] = {path, newPath};
                 copyFiles(2, arr);
-
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
             }
