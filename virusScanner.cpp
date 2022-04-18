@@ -1,16 +1,3 @@
-/*
-Kayla Zantello, Kara Sumpter, Ethan Macalaguim
-
-Project 2: Pager - A Virtual Memory Manager
-CST-315: Operating Systems
-Dr.Citro
-March 9, 2022
-
-This program simulates the paging method of virtual memory by reading in a text file representing logical memory,
-generating a page table that maps each page of logical memory to a random frame in physical memory,
-then using that page table to place data from logical memory into the correct spot in physical memory.
-Finally, the program writes the current state of physical memory to another text file.
-*/
 #include <iostream>
 #include <string>
 #include <experimental/filesystem>
