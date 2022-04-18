@@ -141,7 +141,7 @@ while(1) {
                 mkdir("sysFiles", 0777);
                 string newPath = path + "/sysFiles"; //create new directory to copy files into
                 string arr[2] = {path, newPath};
-                copyFiles(2, arr);
+                copyFiles(3, arr);
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
             }
