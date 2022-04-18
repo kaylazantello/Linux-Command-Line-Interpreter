@@ -12,6 +12,8 @@ namespace fs = std::experimental::filesystem;
 
 int copyFiles(int argn, string argv[]) {
 
+    std::fstream fstr;
+
     int src_fd, dst_fd, n, err;
     unsigned char buffer[4096];
     char * src_path, dst_path;
@@ -27,8 +29,8 @@ int copyFiles(int argn, string argv[]) {
     src_path = argv[1];
     dst_path = argv[2];
 
-    src_fd = open(src_path, O_RDONLY);
-    dst_fd = open(dst_path, O_CREAT | O_WRONLY);
+    src_fd = fstr.open(src_path, O_RONLY);
+    dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
 
     while (1) {
         err = read(src_fd, buffer, 4096);
