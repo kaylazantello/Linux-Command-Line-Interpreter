@@ -14,10 +14,9 @@ namespace fs = std::experimental::filesystem;
 
 int copyFiles(int argn, string argv[]) {
 
-    //std::fstream fstr;
-
     int src_fd, dst_fd, n, err;
-    unsigned char buffer[4096];
+    //unsigned char buffer[4096];
+    void * buffer[4096];
     const char * src_path;
     const char * dst_path;
 
@@ -31,9 +30,6 @@ int copyFiles(int argn, string argv[]) {
 
     src_path = argv[1].c_str();
     dst_path = argv[2].c_str();
-
-    //src_fd = fstr.open(src_path, O_RONLY);
-    //dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
 
     src_fd = open(src_path, O_RDONLY);
     dst_fd = open(dst_path, O_CREAT | O_WRONLY);
@@ -58,6 +54,7 @@ int copyFiles(int argn, string argv[]) {
     close(src_fd);
     close(dst_fd);
 }
+
  string pwd() {
     fs::path p = fs::current_path();   // use filesystem library to get current path
     return p.string();  // convert the variable from type path object to string and return
@@ -65,14 +62,11 @@ int copyFiles(int argn, string argv[]) {
 
 int main() {
 
-    //cout << "\033[1;34mThis is bold red text\033[0m\n";
-    //system("whoami");
-
     string input;
     vector<vector<string>> commands{};
     vector<string> temp{};
     vector<string> cmd{};
-while(1) {
+    while(1) {  
          
         // display user input prompt
         cout << "\n\033[1;32m" << getenv("USER") << "\033[0m:\033[1;34m" << pwd() << "\033[1;37m> \033[0m";  // bold green/blue username and path name prompt
@@ -135,16 +129,24 @@ while(1) {
             if(commands[i][0] == "quit") {
                 return 0;
             }
+
+            // change the current working directory
+            if(commands[i][0] == "cd") {
+                chdir(commands[i][1].c_str());
+                continue;
+            }
+
             // create a new emtpy directory within current directory, name of new directory is specified by user
             if(commands[i][0] == "mkdir") {
                 string path = pwd(); //get current working directory
                 mkdir("sysFiles", 0777);
                 string newPath = path + "/sysFiles"; //create new directory to copy files into
                 string arr[2] = {path, newPath};
-                copyFiles(2, arr);
+                //copyFiles(3, arr);
+                fs::copy(path, newPath);
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
             }
-}
-}
+        }
+    }
 }
