@@ -6,17 +6,18 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <fstream>
+#include <fcntl.h>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
-int copyFiles(int argn, string argv[]) {
+int copyFiles(int argn, char argv[]) {
 
     std::fstream fstr;
 
     int src_fd, dst_fd, n, err;
     unsigned char buffer[4096];
-    char * src_path, dst_path;
+    char src_path, dst_path;
 
     // Assume that the program takes two arguments the source path followed
     // by the destination path.
@@ -52,7 +53,10 @@ int copyFiles(int argn, string argv[]) {
     close(src_fd);
     close(dst_fd);
 }
-
+ string pwd() {
+    fs::path p = fs::current_path();   // use filesystem library to get current path
+    return p.string();  // convert the variable from type path object to string and return
+}  
 
 int main() {
 
@@ -64,10 +68,7 @@ int main() {
     vector<string> temp{};
     vector<string> cmd{};
 while(1) {
-        string pwd() {
-                     fs::path p = fs::current_path();   // use filesystem library to get current path
-                     return p.string();  // convert the variable from type path object to string and return
-        }    
+         
         // display user input prompt
         cout << "\n\033[1;32m" << getenv("USER") << "\033[0m:\033[1;34m" << pwd() << "\033[1;37m> \033[0m";  // bold green/blue username and path name prompt
 
@@ -134,7 +135,12 @@ while(1) {
                 string path = pwd(); //get current working directory
                 mkdir("sysFiles", 0777);
                 string newPath = path + "/sysFiles"; //create new directory to copy files into
-                copyFiles(path, newPath);
+                char c[path.size() + 1];
+                strcpy(c, path.c_str());
+                char c1[newPath.size() + 1];
+                strcpy(c, newPath.c_str());
+                char* arr[2] = {c, c1};
+                copyFiles(2, arr);
 
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
