@@ -8,6 +8,7 @@
 #include <fstream>
 #include <fcntl.h>
 #include <string.h>
+#include <exception>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -30,8 +31,15 @@ int copyFiles(int argn, string argv[]) {
 
     src_path = argv[1].c_str();
     dst_path = argv[2].c_str();
+<<<<<<< HEAD
+=======
+    /*
+    //src_fd = fstr.open(src_path, O_RONLY);
+    //dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
+>>>>>>> 3d7c731c52b8fe63a8303e01fb06a8ce71f67a07
 
     src_fd = open(src_path, O_RDONLY);
+    cout << "\n" << src_fd;
     dst_fd = open(dst_path, O_CREAT | O_WRONLY);
 
     while (1) {
@@ -53,6 +61,21 @@ int copyFiles(int argn, string argv[]) {
 
     close(src_fd);
     close(dst_fd);
+    */
+   fs:: path sourceFile = src_path;
+    fs:: path targetParent = dst_path;
+    auto target = targetParent / sourceFile.filename();
+
+    try
+    {
+        //fs:: create_directories(targetParent); // Recursively create the target directory path if it does not exist.
+        fs:: copy(sourceFile, target, fs ::copy_options::overwrite_existing);
+    }
+    catch (std::exception& e) //If any filesystem error
+    {
+        cout << e.what();
+    }
+    return EXIT_SUCCESS;
 }
 
  string pwd() {
