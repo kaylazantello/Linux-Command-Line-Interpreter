@@ -12,7 +12,7 @@
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
-
+/*
 int copyFiles(int argn, string argv[]) {
 
     int src_fd, dst_fd, n, err;
@@ -31,12 +31,6 @@ int copyFiles(int argn, string argv[]) {
 
     src_path = argv[1].c_str();
     dst_path = argv[2].c_str();
-<<<<<<< HEAD
-=======
-    /*
-    //src_fd = fstr.open(src_path, O_RONLY);
-    //dst_fd = fstr.open(dst_path, O_CREAT | O_WRONLY);
->>>>>>> 3d7c731c52b8fe63a8303e01fb06a8ce71f67a07
 
     src_fd = open(src_path, O_RDONLY);
     cout << "\n" << src_fd;
@@ -61,7 +55,7 @@ int copyFiles(int argn, string argv[]) {
 
     close(src_fd);
     close(dst_fd);
-    */
+    
    fs:: path sourceFile = src_path;
     fs:: path targetParent = dst_path;
     auto target = targetParent / sourceFile.filename();
@@ -77,7 +71,7 @@ int copyFiles(int argn, string argv[]) {
     }
     return EXIT_SUCCESS;
 }
-
+*/
  string pwd() {
     fs::path p = fs::current_path();   // use filesystem library to get current path
     return p.string();  // convert the variable from type path object to string and return
