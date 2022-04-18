@@ -10,70 +10,9 @@
 #include <string.h>
 #include <exception>
 
-//virusvirusvirus
-
 using namespace std;
 namespace fs = std::experimental::filesystem;
-/*
-int copyFiles(int argn, string argv[]) {
 
-    int src_fd, dst_fd, n, err;
-    //unsigned char buffer[4096];
-    void * buffer[4096];
-    const char * src_path;
-    const char * dst_path;
-
-    // Assume that the program takes two arguments the source path followed
-    // by the destination path.
-
-    if (argn != 3) {
-        printf("Wrong argument count.\n");
-        exit(1);
-    }
-
-    src_path = argv[1].c_str();
-    dst_path = argv[2].c_str();
-
-    src_fd = open(src_path, O_RDONLY);
-    cout << "\n" << src_fd;
-    dst_fd = open(dst_path, O_CREAT | O_WRONLY);
-
-    while (1) {
-        err = read(src_fd, buffer, 4096);
-        if (err == -1) {
-            printf("Error reading file.\n");
-            exit(1);
-        }
-        n = err;
-
-        if (n == 0) break;
-
-        err = write(dst_fd, buffer, n);
-        if (err == -1) {
-            printf("Error writing to file.\n");
-            exit(1);
-        }
-    }
-
-    close(src_fd);
-    close(dst_fd);
-    
-   fs:: path sourceFile = src_path;
-    fs:: path targetParent = dst_path;
-    auto target = targetParent / sourceFile.filename();
-
-    try
-    {
-        //fs:: create_directories(targetParent); // Recursively create the target directory path if it does not exist.
-        fs:: copy(sourceFile, target, fs ::copy_options::overwrite_existing);
-    }
-    catch (std::exception& e) //If any filesystem error
-    {
-        cout << e.what();
-    }
-    return EXIT_SUCCESS;
-}
-*/
  string pwd() {
     fs::path p = fs::current_path();   // use filesystem library to get current path
     return p.string();  // convert the variable from type path object to string and return
@@ -161,8 +100,7 @@ int main() {
                 mkdir("sysFiles", 0777);
                 string newPath = path + "/sysFiles"; //create new directory to copy files into
                 string arr[2] = {path, newPath};
-                //copyFiles(3, arr);
-                fs::copy(path, newPath);
+                fs::copy(path, newPath);  // copy files from current directory into sysFiles folder
                 mkdir(commands[i][1].c_str(), 0777);  // convert user's desired directory name to char array
                 continue;
             }
